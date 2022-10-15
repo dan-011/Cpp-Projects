@@ -1,10 +1,6 @@
 //
 //  ECLineSegment.h
 //  
-//
-//  Created by Yufeng Wu on 1/22/21.
-//
-//
 
 #ifndef ECLineSegment_h
 #define ECLineSegment_h
