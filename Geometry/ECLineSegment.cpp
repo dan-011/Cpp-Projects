@@ -1,11 +1,6 @@
 //
 //  ECLineSegment.cpp
 //  
-//
-//  Created by Yufeng Wu on 1/22/21.
-//
-//
-
 #include "ECLineSegment.h"
 #include <cmath>
 #include <algorithm>
