@@ -2,9 +2,6 @@
 //  ECTriangle.h
 //  
 //
-//  Created by Yufeng Wu on 1/22/21.
-//
-//
 
 #ifndef ECTriangle_h
 #define ECTriangle_h
