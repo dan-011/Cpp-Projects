@@ -1,6 +1,10 @@
 //
 //  ECTriangle.h
 //  
+<<<<<<< HEAD
+=======
+//
+>>>>>>> b8ec8ebb35ed8f99b603bda34f8e4077636a55ec
 
 #ifndef ECTriangle_h
 #define ECTriangle_h
