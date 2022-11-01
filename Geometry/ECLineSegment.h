@@ -2,20 +2,21 @@
 //  ECLineSegment.h
 //  
 //
-//  Created by Yufeng Wu on 1/22/21.
-//
-//
+
 
 #ifndef ECLineSegment_h
 #define ECLineSegment_h
-#define MIN(P1, P2)(((P1) < (P2)) ? P1 : P2
+
+#include <string>
+#include <utility>
+
 // -----------------------------------------------------------------------------
 // Point on 2D plane
-#include <string>
+
 class EC2DPoint
 {
 public:
-    EC2DPoint();//: cx(0), cy(0){}
+    EC2DPoint();
     EC2DPoint(double x, double y);//: cx(x), cy(y){}
     EC2DPoint(const EC2DPoint& point);
     EC2DPoint& operator=(const EC2DPoint& point){
@@ -37,9 +38,8 @@ public:
     double GetX() const;
     double GetY() const;
     std::string PointString() const;
-
+    
 private:
-    // your code goes here
     double cx;
     double cy;
 };
@@ -51,17 +51,23 @@ class ECLineSegment
 {
 public:
     ECLineSegment(const EC2DPoint &pStart, const EC2DPoint &pEnd);
+    
+    // Is this segment intersect with the other?
     bool IsIntersect(const ECLineSegment &rhs) const;
     double Length() const;
     bool PointIntersect(const EC2DPoint &point) const;
     void SlopeFormula(double& m, double& b) const;
     int PointReference(const EC2DPoint& point) const; // returns 1 if to the right or above line, returns -1 if to the left or below line, 0 if part of line
+    double Direction(const EC2DPoint &pi, const EC2DPoint &pj, const EC2DPoint &pk) const;
+    double Direction(const EC2DPoint &pt) const;
+    bool OnSegment(const EC2DPoint &pi, const EC2DPoint &pj, const EC2DPoint &pk) const;
+    bool OnSegment(const EC2DPoint &pt) const;
+    std::pair<EC2DPoint, EC2DPoint> GetPoints() const;
 
+    
 private:
     EC2DPoint pS;
     EC2DPoint pE;
-    double Direction(const EC2DPoint &pi, const EC2DPoint &pj, const EC2DPoint &pk) const;
-    bool OnSegment(const EC2DPoint &pi, const EC2DPoint &pj, const EC2DPoint &pk) const;
 };
 
 

@@ -1,22 +1,16 @@
 //
 //  ECLineSegment.cpp
 //  
-//
-//  Created by Yufeng Wu on 1/22/21.
-//
-//
+
 
 #include "ECLineSegment.h"
 #include <cmath>
 #include <algorithm>
-
-#include <string>
-#include <iostream>
-#include <string.h>
 using namespace std;
 
 // -----------------------------------------------------------------------------
 // Point on 2D plane
+
 EC2DPoint::EC2DPoint(): cx(0), cy(0){}
 EC2DPoint::EC2DPoint(double x, double y): cx(x), cy(y){}
 EC2DPoint::EC2DPoint(const EC2DPoint& point): cx(point.cx), cy(point.cy){}
@@ -35,21 +29,22 @@ std::string EC2DPoint::PointString() const{
     str += ")";
     return str;
 }
-
-
-// your code goes here
-
 // -----------------------------------------------------------------------------
 // Line segment on 2D plane
 
-// your code goes here
 ECLineSegment::ECLineSegment(const EC2DPoint &pStart, const EC2DPoint &pEnd): pS(pStart), pE(pEnd){}
 
 bool ECLineSegment::OnSegment(const EC2DPoint &pi, const EC2DPoint &pj, const EC2DPoint &pk) const{
     return (min(pi.GetX(), pj.GetX()) <= pk.GetX()) && (pk.GetX() <= max(pi.GetX(), pj.GetX())) && (min(pi.GetY(), pj.GetY()) <= pk.GetY()) && (pk.GetY() <= max(pi.GetY(), pj.GetY()));
 }
+bool ECLineSegment::OnSegment(const EC2DPoint &pt) const{
+    return (min(pS.GetX(), pE.GetX()) <= pt.GetX()) && (pt.GetX() <= max(pS.GetX(), pE.GetX())) && (min(pS.GetY(), pE.GetY()) <= pt.GetY()) && (pt.GetY() <= max(pS.GetY(), pE.GetY()));
+}
 double ECLineSegment::Direction(const EC2DPoint &pi, const EC2DPoint &pj, const EC2DPoint &pk) const{
     return (pk - pi)*(pj - pi);
+}
+double ECLineSegment::Direction(const EC2DPoint &pt) const{
+    return (pt - pS)*(pE - pS);
 }
 bool ECLineSegment::IsIntersect(const ECLineSegment &rhs) const{
     EC2DPoint p1 = pS;
@@ -112,7 +107,10 @@ bool ECLineSegment::PointIntersect(const EC2DPoint& point) const{
     double b;
     try{
         SlopeFormula(m, b);
-        return point.GetY() == ((m*point.GetX()) + b);
+        bool withinBounds = false;
+        double px = point.GetX();
+        withinBounds = ((px >= pS.GetX() && px <= pE.GetX()) || (px <= pS.GetX() && px >= pE.GetX()));
+        return fabs(point.GetY() - ((m*point.GetX()) + b)) < .0000000001 && withinBounds;
     }
     catch(string e){
         double x1 = pS.GetX();
@@ -163,4 +161,9 @@ int ECLineSegment::PointReference(const EC2DPoint& point) const{ // returns 1 if
             return 0;
         }
     }
+}
+
+std::pair<EC2DPoint, EC2DPoint> ECLineSegment::GetPoints() const{
+    pair<EC2DPoint, EC2DPoint> points(pS, pE);
+    return points;
 }
