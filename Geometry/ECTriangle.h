@@ -2,9 +2,12 @@
 //  ECTriangle.h
 //  
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 //
 >>>>>>> b8ec8ebb35ed8f99b603bda34f8e4077636a55ec
+=======
+>>>>>>> 5f35f1b4f7baf0ae4295ab2b2764f27218d294d4
 
 #ifndef ECTriangle_h
 #define ECTriangle_h

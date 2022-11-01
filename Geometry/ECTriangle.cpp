@@ -2,9 +2,13 @@
 //  ECTriangle.cpp
 //  
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> b8ec8ebb35ed8f99b603bda34f8e4077636a55ec
+=======
+
+>>>>>>> 5f35f1b4f7baf0ae4295ab2b2764f27218d294d4
 #include "ECTriangle.h"
 #include <cmath>
 using namespace std;
@@ -26,6 +30,7 @@ double ECTriangle::GetArea() const{
     double s = (a + b + c)/2;
     return sqrt(s*(s-a)*(s-b)*(s-c));
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
     
 =======
@@ -87,3 +92,6 @@ bool ECTriangle::IsIntersecting(const ECTriangle &rhs) const{
     return false;
 }
 >>>>>>> b8ec8ebb35ed8f99b603bda34f8e4077636a55ec
+=======
+    
+>>>>>>> 5f35f1b4f7baf0ae4295ab2b2764f27218d294d4
