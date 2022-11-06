@@ -1,26 +1,30 @@
 //
-//  ECTriangle.cpp
+//  ECTriangle.h
 //  
 
-#include "ECTriangle.h"
-#include <cmath>
-using namespace std;
+#ifndef ECTriangle_h
+#define ECTriangle_h
 
-ECTriangle::ECTriangle(const EC2DPoint &p1, const EC2DPoint &p2, const EC2DPoint &p3): ECAbstractConvexPolygon({p1, p2, p3}){
-}
-    
-// Test if the polygon is convex? Return false if not
-bool ECTriangle::IsConvex() const{ // all triangles are convex
-    return true;
-}
-    
-// Get area of the triangle
-double ECTriangle::GetArea() const{
-    const double a = GetLine(0).Length();
-    const double b = GetLine(1).Length();
-    const double c = GetLine(2).Length();
+#include "ECLineSegment.h"
+#include "ECAbstractConvexPolygon.h"
 
-    double s = (a + b + c)/2;
-    return sqrt(s*(s-a)*(s-b)*(s-c));
-}
+// -----------------------------------------------------------------------------
+// Triangle on 2D plane
+
+class ECTriangle : public ECAbstractConvexPolygon
+{
+public:
+    ECTriangle(const EC2DPoint &p1, const EC2DPoint &p2, const EC2DPoint &p3);
     
+    // Test if the polygon is convex? Return false if not
+    virtual bool IsConvex() const;
+    
+    // Get area of the triangle
+    virtual double GetArea() const;
+
+private:
+
+};
+
+
+#endif /* ECTriangle_h */
